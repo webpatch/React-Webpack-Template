@@ -1,0 +1,7 @@
+<% if (locals.redux && locals.router){ -%>
+<%- include('./template/src/part/wrap-router-redux.jsx') -%>
+<% }else if(locals.redux) { -%>
+<%- include('./template/src/part/wrap-redux.jsx') -%>
+<% }else if(locals.router) { -%>
+<%- include('./template/src/part/wrap-router.jsx') -%>
+<% } -%>

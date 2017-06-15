@@ -1,0 +1,19 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+<% if (locals.router){ %>import { Link } from 'react-router';<% } %>
+<% if (locals.cssm){ -%>
+import  './user.scss';
+<% } else { -%>
+import styles from './user.scss';
+<% } -%>
+
+export default class User extends Component {
+  render() {
+    return (
+      <div>
+          <div <% if (locals.cssm){ %>styleName="about"<% } else { %>className={styles.user}<% } %>>Hello from user!</div>
+          <% if (locals.router) { %><Link to='/'>back to index</Link><% } %>
+      </div>
+    );
+  }
+}

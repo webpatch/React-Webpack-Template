@@ -1,0 +1,22 @@
+{
+  "presets": [
+    [
+      "es2015",
+      {
+        "modules": false
+      }
+    ],
+    "react",
+    "stage-1"
+  ],
+  "plugins": [
+    "transform-decorators-legacy"
+  ]<%if (locals.testing) {%>,
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }<% } %>
+}
