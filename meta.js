@@ -34,7 +34,7 @@ module.exports = {
   App Name : <%= name %>
   Path : <%= path %>
   Modules  : 
-    <%= info %>
+<%= info %>
 ---------------------------------
   Are you sure?`,
   filter: {
