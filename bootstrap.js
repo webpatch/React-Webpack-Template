@@ -21,11 +21,6 @@ module.exports = {
       name: 'testing',
       message: 'Is need be testing?'
     },
-    {
-      type: 'confirm',
-      name: 'install',
-      message: 'Install all dependence right now?'
-    },
   ],
   completeMessage: 'To get started:\n\n cd <%=destDirName%>\n  npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack',
   filter: {
