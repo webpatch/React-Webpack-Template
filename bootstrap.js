@@ -28,7 +28,7 @@ module.exports = {
     'dev/bage.js': 'unit',
     'dev/karma.conf.js': 'unit',
     'src/model/*': 'redux',
-    'src/warp.jsx.ejs': 'redux|router',
+    'src/wrap.jsx.ejs': 'redux|router',
   },
   ignore: [
     'src/part/*',
