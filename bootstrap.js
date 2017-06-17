@@ -35,11 +35,7 @@ module.exports = {
     'src/model/*': 'redux',
     'src/warp.jsx.ejs': 'redux|router',
   },
-<<<<<<< HEAD
   ignore: [
-=======
-  skip: [
->>>>>>> 39947379232637bb6b9c980b09e920259464d558
     'src/part/*',
   ]
 };
