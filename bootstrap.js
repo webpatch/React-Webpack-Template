@@ -18,15 +18,15 @@ module.exports = {
     },
     {
       type: 'confirm',
-      name: 'testing',
-      message: 'Is need be testing?'
+      name: 'unit',
+      message: 'Is need unit testing?'
     },
   ],
-  completeMessage: 'To get started:\n\n cd <%=destDirName%>\n  npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack',
+  completeMessage: 'To get started:\n\n cd <%=destPath%>\n  npm install\n  npm start\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack',
   filter: {
-    'test/*': 'testing',
-    'dev/bage.js': 'testing',
-    'dev/karma.conf.js': 'testing',
+    'test/*': 'unit',
+    'dev/bage.js': 'unit',
+    'dev/karma.conf.js': 'unit',
     'src/model/*': 'redux',
     'src/warp.jsx.ejs': 'redux|router',
   },

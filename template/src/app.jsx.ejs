@@ -1,9 +1,9 @@
 <% if (locals.redux && locals.router){ -%>
-<%- include('./template/src/part/app-router-redux.jsx') -%>
+<%- include('template/src/part/app-router-redux.jsx') -%>
 <% }else if(locals.redux) { -%>
-<%- include('./template/src/part/app-redux.jsx') -%>
+<%- include('template/src/part/app-redux.jsx') -%>
 <% }else if(locals.router) { -%>
-<%- include('./template/src/part/app-router.jsx') -%>
+<%- include('template/src/part/app-router.jsx') -%>
 <% }else{ -%>
-<%- include('./template/src/part/app.jsx') -%>
+<%- include('template/src/part/app.jsx') -%>
 <% } -%>
