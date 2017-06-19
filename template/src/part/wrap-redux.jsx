@@ -9,7 +9,7 @@ const store = DEBUG ? createStore(
   rootReducer,
   compose(
     applyMiddleware(thunkMiddleware),
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    window.devToolsExtension ? window.devToolsExtension() : f => f,
   )
 ) : createStore(rootReducer, applyMiddleware(thunkMiddleware));
 

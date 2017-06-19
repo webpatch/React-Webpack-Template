@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
+<%_ if(locals.router){ -%>
+import { routerReducer } from 'react-router-redux';
+<%_ } -%>
 import * as ActionTypes from './action-types';
-<% if(locals.router){ %>
-import { routerReducer } from 'react-router-redux'
-<% } %>
+
 function appState(state = { data: 'Hello from redux!' }, action) {
   switch (action.type) {
     case ActionTypes.SYNC_ACTION:

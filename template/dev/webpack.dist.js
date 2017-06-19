@@ -49,7 +49,7 @@ module.exports = {
       },
       {
         test: /\.jsx?$/, // 通过正则匹配js,jsx文件
-        loader: 'babel-loader', // 调用 babel进行es6->es5转换,并且启用react热替换
+        loader: 'babel-loader',
         exclude: /node_modules/, // 跳过 node_modules 目录
         include: path.resolve(__dirname, '../src'),
         query: {
@@ -59,7 +59,7 @@ module.exports = {
       { test: /\.(jpg|gif|png|svg|ico)$/, loader: 'file-loader?name=images/[name].[ext]' },
       {
         test: /\.scss$/,
-        exclude: path.resolve(__dirname, '../src/css'),
+        exclude: path.resolve(__dirname, '../src/css'),  // 非src/css下的scss开启局部样式模式
         use: extractCSS.extract({
           use: [
             'css-loader?minimize&modules&&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',

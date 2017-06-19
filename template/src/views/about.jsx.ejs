@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 <% if (locals.router){ %>import { Link } from 'react-router';<% } %>
 <% if (locals.cssm){ -%>
-import  './about.scss';
+import './about.scss';
 <% } else { -%>
 import styles from './about.scss';
 <% } -%>
@@ -11,8 +11,8 @@ export default class About extends Component {
   render() {
     return (
       <div>
-          <div <% if (locals.cssm){ %>styleName="about"<% } else { %>className={styles.about}<% } %>>Hello from about!</div>
-          <% if (locals.router) { %><Link to='/'>back to index</Link><% } %>
+        <div <% if (locals.cssm){ %>styleName="about"<% } else { %>className={styles.about}<% } %>>Hello from about!</div>
+        <% if (locals.router) { %><Link to="/">back to index</Link><% } %>
       </div>
     );
   }

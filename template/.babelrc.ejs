@@ -10,7 +10,16 @@
     "stage-1"
   ],
   "plugins": [
-    "transform-decorators-legacy"
+    "transform-decorators-legacy"<%if (locals.cssm) {%>,
+      [
+        "react-css-modules",
+        {
+          "filetypes": {
+            ".scss": "postcss-scss"
+          },
+          "generateScopedName":"[name]__[local]___[hash:base64:5]"
+      }
+    ]<% } %>
   ]<%if (locals.unit) {%>,
   "env": {
     "test": {

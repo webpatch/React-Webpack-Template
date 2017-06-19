@@ -3,23 +3,26 @@ module.exports = {
     {
       type: 'confirm',
       name: 'redux',
-      message: 'Use redux?'
+      message: 'Use redux?',
+      default: true,
     },
     {
       type: 'confirm',
       name: 'router',
-      message: 'Use react router?'
+      message: 'Use react router?',
+      default: true,
     },
     {
       type: 'confirm',
-      when: 'router',
       name: 'cssm',
-      message: 'Use react css moudules?'
+      message: 'Use react css moudules?',
+      default: true,
     },
     {
       type: 'confirm',
       name: 'unit',
-      message: 'Is need unit testing?'
+      message: 'Is need unit testing?',
+      default: false,
     },
   ],
   completeMessage: 'To get started:\n\n cd <%=destPath%>\n  npm install\n  npm start\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack',

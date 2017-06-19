@@ -10,8 +10,8 @@ export default class App extends Component {
       <div>
         <dl>
           <dt>Pages</dt>
-          <dd><Link to='/about'>About</Link></dd>
-          <dd><Link to='/user'>User</Link></dd>
+          <dd><Link to="/about">About</Link></dd>
+          <dd><Link to="/user">User</Link></dd>
         </dl>
         <div>
           {this.props.children}
