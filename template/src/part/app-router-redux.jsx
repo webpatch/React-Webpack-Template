@@ -7,7 +7,7 @@ import './css/main.scss'; // import global css style
 
 class App extends Component {
   render() {
-    const { dispatch, appState:{ data } } = this.props;
+    const { dispatch, appState: { data } } = this.props;
     return (
       // App root node
       <div>

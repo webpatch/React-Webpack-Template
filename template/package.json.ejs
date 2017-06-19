@@ -12,7 +12,7 @@
     "scripts": {
       "precommit": "npm run precheck",
       "precheck": "npm run eslint && npm run csslint",
-      "eslint": "cross-env NODE_ENV=test eslint --cache --ext .jsx,.js src/",
+      "eslint": "cross-env NODE_ENV=test eslint --format node_modules/eslint-friendly-formatter --cache --ext .jsx,.js src/",
       "csslint": "stylelint src/**/*.scss --syntax scss",
       "start": "node ./dev/server.dev.js",
       <%_ if (locals.unit){ -%>

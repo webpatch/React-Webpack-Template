@@ -14,7 +14,7 @@ const store = DEBUG ? createStore(
   compose(
     applyMiddleware(thunkMiddleware),
     window.devToolsExtension ? window.devToolsExtension() : f => f,
-  )
+  ),
 ) : createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 const history = syncHistoryWithStore(browserHistory, store);
