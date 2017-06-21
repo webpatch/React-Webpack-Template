@@ -12,10 +12,12 @@
   "plugins": [
     "transform-decorators-legacy"<%if (locals.cssm) {%>,
       [
-        "react-css-modules",
+        "react-css-modules-modify",
         {
           "filetypes": {
-            ".scss": "postcss-scss"
+            ".scss": {
+              "syntax": "postcss-scss"
+            }
           },
           "generateScopedName":"[name]__[local]___[hash:base64:5]"
       }
