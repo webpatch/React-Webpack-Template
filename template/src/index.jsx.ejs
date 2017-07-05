@@ -4,26 +4,18 @@ import { AppContainer } from 'react-hot-loader';
 <%var filePath = (locals.redux||locals.router) ? './wrap': './app'-%>
 import App from '<%= filePath %>';
 
-const rootEl = document.getElementById('root');
-
 if (DEBUG) {
-  ReactDOM.render(
-    (<AppContainer><App /></AppContainer>), rootEl);
-
-  if (module.hot) {
-    module.hot.accept('<%= filePath %>', () => {
-      // If you use Webpack 2 in ES modules mode, you can
-      // use <App /> here rather than require() a <NextApp />.
-      const NextApp = require('<%= filePath %>').default;
-
-      ReactDOM.render(
-        <AppContainer>
-          <NextApp />
-        </AppContainer>,
-        rootEl,
-      );
-    });
-  }
+  const render = (Component) => {
+    ReactDOM.render(
+      <AppContainer>
+        <Component />
+      </AppContainer>,
+      document.getElementById('root'),
+    );
+  };
+  render(App);
+  if (module.hot) module.hot.accept('<%= filePath %>', () => { render(App); });
 } else {
+  const rootEl = document.getElementById('root');
   ReactDOM.render(<App />, rootEl);
 }
