@@ -1,6 +1,6 @@
 {
     "name": "<%= appName %>",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "",
     "homepage": "",
     "author": {
@@ -14,13 +14,16 @@
       "precheck": "npm run eslint && npm run csslint",
       "eslint": "cross-env NODE_ENV=test eslint --format node_modules/eslint-friendly-formatter --cache --ext .jsx,.js src/",
       "csslint": "stylelint src/**/*.scss --syntax scss",
-      "start": "node ./dev/server.dev.js",
+      <%_ if (locals.version){ -%>
+      "version": "node ./dev/version.js",
+      <%_ } -%>
+      "start": "<%_if (locals.version){%>npm run version && <%}%>node ./dev/server.dev.js",
       <%_ if (locals.unit){ -%>
       "bage": "node ./dev/bage.js",
       "test": "cross-env NODE_ENV=test karma start ./dev/karma.conf.js",
       <%_ } -%>
       "dstart": "cross-env NODE_ENV=production node ./dev/server.dist.js",
-      "dist": "rimraf dist/ && cross-env NODE_ENV=production webpack --config ./dev/webpack.dist.js && npm run dstart"
+      "dist": "rimraf dist/ &&<%_if (locals.version){%> cross-env NODE_ENV=production npm run version &&<%}%> cross-env NODE_ENV=production webpack --config ./dev/webpack.dist.js && npm run dstart"
     },
     "dependencies": {
       "react": "^15.5.4",
