@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackAssetPlugin = require('html-asset-webpack-plugin');
 const helper = require('./helper');
-const cfg = require('../app.config');
+const cfg = require('../app.config.js');
 const { port, host } = cfg.server;
 
 module.exports = {

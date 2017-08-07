@@ -4,7 +4,7 @@ const HtmlWebpackAssetPlugin = require('html-asset-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const helper = require('./helper');
-const cfg = require('../app.config');
+const cfg = require('../app.config.js');
 
 const extractCSS = new ExtractTextPlugin({
   filename: 'css/[name].[contenthash:5].css',
