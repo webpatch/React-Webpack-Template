@@ -52,16 +52,16 @@ module.exports = {
         test: /\.scss$/,
         exclude: path.resolve(__dirname, '../src/css/'), // 非src/css下的scss开启局部样式模式
         loaders: [
-          'style-loader',
+          'style-loader?sourceMap',
           'css-loader?modules&sourceMap=true&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'postcss-loader',
+          'postcss-loader?sourceMap',
           'sass-loader?sourceMap',
         ],
       },
       {
         test: /\.scss$/,
         include: path.resolve(__dirname, '../src/css/'),
-        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader?sourceMap'],
+        loaders: ['style-loader?sourceMap', 'css-loader?sourceMap', 'postcss-loader?sourceMap', 'sass-loader?sourceMap'],
       },
     ],
   },

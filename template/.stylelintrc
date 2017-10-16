@@ -10,12 +10,12 @@
       "background-color"
     ]],
     "scss/dollar-variable-pattern": "^(([a-z]+)-*)+$",
-    "selector-no-id": true,
+    "selector-max-id": 0,
     "max-nesting-depth": 1,
     "at-rule-blacklist": [
       "extend"
     ],
-    "selector-no-universal": true,
+    "selector-max-universal": 0,
     "number-leading-zero": "never"
   }
 }

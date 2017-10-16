@@ -4,9 +4,6 @@ const config = require('./webpack.dev');
 const appConfig = require('../app.config.js');
 const chalk = require('chalk');
 const path = require('path');
-const openBrowser = require('react-dev-utils/openBrowser');
-var getProcessForPort = require('react-dev-utils/getProcessForPort');
-var prompt = require('react-dev-utils/prompt');
 
 let { port, host } = appConfig.server;
 
