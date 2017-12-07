@@ -37,7 +37,7 @@ function defaultParams(cfg) {
   }
 
   return {
-    template: './public/index.html',
+    template: './template/index.html',
     filename: `${cfg.name}.html`,
     chunks: [cfg.name, 'vendor'],
     inject: true,

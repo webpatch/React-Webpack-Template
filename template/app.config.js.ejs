@@ -1,10 +1,5 @@
-const ip = require('ip').address();
-
 const config = {
-  server: {
-    host: ip,
-    port: 8000,
-  },
+  serverPort: 8000,
   copyFile: [
     // { from: './single_part', to: './' },
     <%if (!locals.version){%>// <%}%>{ from: './config.js', to: './config.js' },

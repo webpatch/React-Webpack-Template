@@ -3,7 +3,9 @@ const path = require('path');
 const HtmlWebpackAssetPlugin = require('html-asset-webpack-plugin');
 const helper = require('./helper');
 const cfg = require('../app.config.js');
-const { port, host } = cfg.server;
+const ip = require('ip').address();
+
+const { port, host } = { port: cfg.serverPort, host: ip };
 
 module.exports = {
   devtool: 'eval',
@@ -25,9 +27,7 @@ module.exports = {
       'process.env': { NODE_ENV: JSON.stringify('development') },
       DEBUG: true,
     }),
-    new webpack.LoaderOptionsPlugin({ debug: true, minimize: false }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
     ...helper.createHtmlPlugins(cfg.html),
     new HtmlWebpackAssetPlugin(),
@@ -40,12 +40,27 @@ module.exports = {
       },
       {
         test: /\.jsx?$/, // 通过正则匹配js,jsx文件
-        loader: 'babel-loader',
+        loaders: [
+          {
+            loader: "thread-loader",
+            options: {
+              workers: 2,
+              workerParallelJobs: 50,
+              workerNodeArgs: ['--max-old-space-size=1024'],
+              poolTimeout: 2000,
+              poolParallelJobs: 50,
+              name: "my-pool"
+            }
+          },
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: false
+            }
+          }
+        ],
         exclude: /node_modules/, // 跳过 node_modules 目录
         include: path.resolve(__dirname, '../src'),
-        query: {
-          cacheDirectory: false,
-        },
       },
       { test: /\.(jpg|gif|png|svg|ico)$/, loader: 'file-loader?name=images/[name].[ext]' },
       {

@@ -1,10 +1,10 @@
 const chalk = require('chalk');
+const ip = require('ip').address();
 const webpackConfig = require('./webpack.dist');
 const server = require('pushstate-server');
 const config = require('../app.config.js');
 
-let { port, host } = config.server;
-port += 1;
+const { port, host } = { port: config.serverPort + 1, host: ip };
 
 server.start({
   port: port,

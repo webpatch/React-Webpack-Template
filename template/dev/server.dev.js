@@ -1,11 +1,12 @@
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
-const config = require('./webpack.dev');
-const appConfig = require('../app.config.js');
 const chalk = require('chalk');
 const path = require('path');
+const ip = require('ip').address();
+const config = require('./webpack.dev');
+const appConfig = require('../app.config.js');
 
-let { port, host } = appConfig.server;
+const { port, host } = { port: appConfig.serverPort, host: ip };
 
 try {
   const compiler = webpack(config);
