@@ -17,7 +17,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  entry: helper.createCommonEntry(cfg.html),
+  entry: helper.createDistEntry(cfg.html),
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: './',

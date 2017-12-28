@@ -3,6 +3,15 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 function createCommonEntry(cfg) {
   if (Array.isArray(cfg)) {
     const obj = {};
+    cfg.forEach(i => (obj[i.name] = i.entry));
+    return obj;
+  }
+  return { [cfg.name]: cfg.entry };
+}
+
+function createDistEntry(cfg) {
+  if (Array.isArray(cfg)) {
+    const obj = {};
     cfg.forEach(i => (obj[i.name] = ['babel-polyfill', i.entry]));
     return obj;
   }
@@ -56,7 +65,7 @@ function createHtmlPlugins(cfg) {
 }
 
 module.exports = {
-  createCommonEntry,
+  createDistEntry,
   createDevModeEntry,
   createHtmlPlugins,
 };
