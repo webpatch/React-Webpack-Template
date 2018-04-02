@@ -1,25 +1,44 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackAssetPlugin = require('html-asset-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const helper = require('./helper');
-const cfg = require('../app.config.js');
+const helper = require('../lib/helper');
+const HtmlPlugin = require('webpack-html-assets-plugin');
 
 const extractCSS = new ExtractTextPlugin({
-  filename: 'css/[name].[contenthash:5].css',
+  filename: 'css/[name].[chunkhash:5].css',
   allChunks: true,
 });
 
-module.exports = {
-  context: path.resolve(__dirname, '../'),
+module.exports = (cfg) => ({
+  optimization: {
+    runtimeChunk: false,
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendor",
+          chunks: "all"
+        }
+      }
+    },
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true
+      })
+    ]
+  },
+  mode: 'production',
+  context: path.resolve(__dirname, '../../'),
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  entry: helper.createDistEntry(cfg.html),
+  entry: helper.createDistEntry(cfg),
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../../dist'),
     publicPath: './',
     filename: 'js/[name].[chunkhash:5].js',
   },
@@ -27,17 +46,13 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('production') },
       DEBUG: false,
+      THEME: JSON.stringify(cfg.theme),
     }),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
-    ...helper.createHtmlPlugins(cfg.html),
-    new HtmlWebpackAssetPlugin(),
+    new HtmlPlugin(cfg),
     extractCSS,
     new CopyWebpackPlugin([
       { from: 'static/', to: 'static/' },
     ].concat(cfg.copyFile)),
-    new UglifyJsPlugin({
-      parallel: true,
-    }),
   ],
   module: {
     rules: [
@@ -67,12 +82,12 @@ module.exports = {
           }
         ],
         exclude: /node_modules/, // 跳过 node_modules 目录
-        include: path.resolve(__dirname, '../src'),
+        include: path.resolve(__dirname, '../../src'),
       },
       { test: /\.(jpg|gif|png|svg|ico)$/, loader: 'file-loader?name=images/[name].[ext]' },
       {
         test: /\.scss$/,
-        exclude: path.resolve(__dirname, '../src/css'),  // 非src/css下的scss开启局部样式模式
+        exclude: path.resolve(__dirname, '../../src/css'),  // 非src/css下的scss开启局部样式模式
         use: extractCSS.extract({
           use: [
             'css-loader?minimize&modules&&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
@@ -84,7 +99,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: path.resolve(__dirname, '../src/css'),
+        include: path.resolve(__dirname, '../../src/css'),
         use: extractCSS.extract({
           use: ['css-loader?minimize', 'postcss-loader', 'sass-loader'],
           publicPath: '../',
@@ -92,4 +107,4 @@ module.exports = {
       },
     ],
   },
-};
+});

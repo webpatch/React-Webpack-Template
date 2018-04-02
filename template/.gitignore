@@ -22,6 +22,7 @@ node_modules/
 .idea/
 .vscode/
 dist/
+release/
 .DS_Store
 .sync
 .eslintcache

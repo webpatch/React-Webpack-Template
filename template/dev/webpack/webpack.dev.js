@@ -1,22 +1,19 @@
 const webpack = require('webpack');
 const path = require('path');
-const HtmlWebpackAssetPlugin = require('html-asset-webpack-plugin');
-const helper = require('./helper');
-const cfg = require('../app.config.js');
+const helper = require('../lib/helper');
+const HtmlPlugin = require('webpack-html-assets-plugin');
 const ip = require('ip').address();
 
-const { port, host } = { port: cfg.serverPort, host: ip };
-
-module.exports = {
-  devtool: 'eval',
-  context: path.resolve(__dirname, '../'),
+module.exports = (cfg) => ({
+  mode: 'development',
+  context: path.resolve(__dirname, '../../'),
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  entry: helper.createDevModeEntry(cfg.html),
+  entry: helper.createDevModeEntry(cfg),
   output: {
-    path: path.resolve(__dirname, '../dist'),
-    publicPath: `http://${host}:${port}/`,
+    path: path.resolve(__dirname, '../../dist'),
+    publicPath: `http://${ip}:${cfg.serverPort}/`,
     filename: '[name].js',
   },
   performance: {
@@ -26,11 +23,10 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('development') },
       DEBUG: true,
+      THEME:JSON.stringify(cfg.theme),
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor' }),
-    ...helper.createHtmlPlugins(cfg.html),
-    new HtmlWebpackAssetPlugin(),
+    new HtmlPlugin(cfg),
   ],
   module: {
     rules: [
@@ -60,12 +56,12 @@ module.exports = {
           }
         ],
         exclude: /node_modules/, // 跳过 node_modules 目录
-        include: path.resolve(__dirname, '../src'),
+        include: path.resolve(__dirname, '../../src'),
       },
       { test: /\.(jpg|gif|png|svg|ico)$/, loader: 'file-loader?name=images/[name].[ext]' },
       {
         test: /\.scss$/,
-        exclude: path.resolve(__dirname, '../src/css/'), // 非src/css下的scss开启局部样式模式
+        exclude: path.resolve(__dirname, '../../src/css/'), // 非src/css下的scss开启局部样式模式
         loaders: [
           'style-loader?sourceMap',
           'css-loader?modules&sourceMap=true&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
@@ -75,9 +71,9 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        include: path.resolve(__dirname, '../src/css/'),
+        include: path.resolve(__dirname, '../../src/css/'),
         loaders: ['style-loader?sourceMap', 'css-loader?sourceMap', 'postcss-loader?sourceMap', 'sass-loader?sourceMap'],
       },
     ],
   },
-};
+});

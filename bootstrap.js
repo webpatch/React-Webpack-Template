@@ -23,12 +23,7 @@ module.exports = {
       name: 'unit',
       message: 'Is need unit testing?',
       default: false,
-    }, {
-      type: 'confirm',
-      name: 'version',
-      message: 'Is need version control in config.js ?',
-      default: false,
-    },
+    }
   ],
   completeMessage: 'To get started:\n\n cd <%=destPath%>\n  npm install\n  npm start\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack',
   filter: {
