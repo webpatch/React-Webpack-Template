@@ -8,12 +8,18 @@ module.exports = {
     "strict": 0,
     "no-console": 0,
     "global-require": 0,
-    "jsx-a11y/href-no-hash": 0,
     "react/forbid-prop-types": 0,
+    "jsx-a11y/href-no-hash": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/no-noninteractive-element-interactions": 0,
     "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/anchor-is-valid":0,
+    "jsx-a11y/iframe-has-title":0,
+    "jsx-a11y/label-has-for":0,
+    "jsx-a11y/no-redundant-roles":0,
+    "prefer-destructuring":"warn",
     'max-len': ["error", 120],
+    'object-curly-newline': 0,
   },
   "extends": "airbnb",
   "env": {
@@ -27,5 +33,6 @@ module.exports = {
   ],
   "globals": {
     "DEBUG": true,
+    "THEME": true,
   }
 };
