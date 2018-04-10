@@ -28,8 +28,8 @@ module.exports = {
   completeMessage: 'To get started:\n\n cd <%=destPath%>\n  npm install\n  npm start\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack',
   filter: {
     'test/*': 'unit',
-    'dev/bage.js': 'unit',
-    'dev/karma.conf.js': 'unit',
+    'dev/lib/bage.js': 'unit',
+    'dev/webpack/karma.conf.js': 'unit',
     'src/model/*': 'redux',
     'dev/version.js': 'version',
     'src/wrap.jsx.ejs': 'redux|router',
