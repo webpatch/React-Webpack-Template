@@ -15,7 +15,7 @@
       "precheck": "npm run eslint && npm run csslint",
       "eslint": "cross-env NODE_ENV=test eslint --format node_modules/eslint-friendly-formatter --cache --ext .jsx,.js src/",
       "csslint": "stylelint src/**/*.scss --syntax scss",
-      "start": "nodemon --watch dev/bootstrap.yml  ./dev/server/dev.js",
+      "start": "nodemon --watch ./dev  ./dev/server/dev.js",
       <%_ if (locals.unit){ -%>
       "bage": "node ./dev/lib/bage.js",
       "test": "cross-env NODE_ENV=test karma start ./dev/webpack/karma.conf.js",
