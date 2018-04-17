@@ -22,7 +22,7 @@ helper.loadConfig()
         contentBase: path.resolve(__dirname, '../../'),
         compress: true,
         historyApiFallback: true,
-        // hot: true,
+        hot: true,
         stats: {
           colors: true,
           assets: false,
