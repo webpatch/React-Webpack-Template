@@ -32,7 +32,7 @@ module.exports = {
     "import"
   ],
   "globals": {
-    "DEBUG": true,
-    "THEME": true,
+    "DEBUG": false,
+    "THEME": false,
   }
 };
