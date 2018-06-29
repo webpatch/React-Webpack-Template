@@ -21,7 +21,7 @@ helper.loadConfig()
         // 写入 version.txt
         const { version, testversion } = packageJSON;
         const out = `V${version}.${testversion}`;
-        fs.writeFileSync('dist/version.txt', out);
+        fs.outputFileSync('dist/version.txt', out);
 
         // 打包
         child_process.exec('node ./dev/lib/zip.js', function (error, stdout, stderr) {
