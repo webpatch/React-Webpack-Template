@@ -6,7 +6,7 @@ const ip = require('ip').address();
 
 module.exports = (cfg) => ({
   mode: 'development',
-  devtool:'sourcemap',
+  devtool:'cheap-module-source-map',
   context: path.resolve(__dirname, '../../'),
   resolve: {
     extensions: ['.js', '.jsx'],

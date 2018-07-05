@@ -24,10 +24,14 @@ module.exports = (cfg) => ({
       }
     },
     minimizer: [
-      new UglifyJsPlugin({
+     new UglifyJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: true
+        uglifyOptions:{
+          output:{
+            comments: false,
+          }
+        }
       })
     ]
   },
